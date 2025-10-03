@@ -2,7 +2,9 @@ package com.turkcell.LibraryApp_ddd.application.member.mapper;
 
 import com.turkcell.LibraryApp_ddd.application.member.dto.MemberResponse;
 import com.turkcell.LibraryApp_ddd.domain.member.model.Member;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MemberResponseMapper {
     public MemberResponse toResponse(Member member) {
         return new MemberResponse(

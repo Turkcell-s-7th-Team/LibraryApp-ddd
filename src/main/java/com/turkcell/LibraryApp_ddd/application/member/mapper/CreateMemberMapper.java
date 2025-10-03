@@ -4,7 +4,9 @@ import com.turkcell.LibraryApp_ddd.application.member.command.CreateMemberComman
 import com.turkcell.LibraryApp_ddd.application.member.dto.CreatedMemberResponse;
 import com.turkcell.LibraryApp_ddd.domain.member.model.Member;
 import com.turkcell.LibraryApp_ddd.domain.member.model.MembershipLevel;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CreateMemberMapper {
 
     public Member toDomain(CreateMemberCommand command) {

@@ -12,4 +12,8 @@ public record Phone(String value) {
             throw new IllegalArgumentException("Invalid phone number format: " + value);
         }
     }
+    @Override
+    public String toString() {
+        return value;
+    }
 }

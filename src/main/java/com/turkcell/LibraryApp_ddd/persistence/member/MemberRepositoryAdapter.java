@@ -5,10 +5,13 @@ import com.turkcell.LibraryApp_ddd.domain.member.model.Member;
 import com.turkcell.LibraryApp_ddd.domain.member.model.MemberId;
 import com.turkcell.LibraryApp_ddd.domain.member.repository.MemberRepository;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class MemberRepositoryAdapter implements MemberRepository {
 
     private final SpringDataMemberRepository springDataMemberRepository;

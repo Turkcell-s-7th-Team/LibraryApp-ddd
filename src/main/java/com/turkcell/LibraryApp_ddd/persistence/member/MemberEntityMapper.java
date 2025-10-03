@@ -15,7 +15,7 @@ public class MemberEntityMapper {
         jpaMemberEntity.setAddress(member.address().toString());
         jpaMemberEntity.setSurname(member.surname());
         jpaMemberEntity.setMembershipDate(member.membershipDate());
-        jpaMemberEntity.setMembershipLevel(jpaMemberEntity.membershipLevel());
+        jpaMemberEntity.setMembershipLevel(member.membershipLevel().toString());
         return jpaMemberEntity;
     }
 

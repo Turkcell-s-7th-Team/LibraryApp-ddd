@@ -5,7 +5,9 @@ import com.turkcell.LibraryApp_ddd.application.member.mapper.CreateMemberMapper;
 import com.turkcell.LibraryApp_ddd.core.cqrs.CommandHandler;
 import com.turkcell.LibraryApp_ddd.domain.member.model.Member;
 import com.turkcell.LibraryApp_ddd.domain.member.repository.MemberRepository;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CreateMemberCommandHandler implements CommandHandler<CreateMemberCommand, CreatedMemberResponse> {
 
     private final MemberRepository memberRepository;

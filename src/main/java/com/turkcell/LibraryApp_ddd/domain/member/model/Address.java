@@ -13,4 +13,8 @@ public record Address(String value) {
             throw new IllegalArgumentException("Address is too long");
         }
     }
+    @Override
+    public String toString() {
+        return value;
+    }
 }
