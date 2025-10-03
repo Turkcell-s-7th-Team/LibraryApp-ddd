@@ -30,7 +30,7 @@ public class Member {
     }
 
     public static Member create(String name, String surname, String email, String phone, String address, LocalDate membershipDate, MembershipLevel membershipLevel) {
-        return new Member(MemberId.generate(), name, surname, new Email(email), new Phone(phone), new Address(address), membershipDate, new MembershipLevel(membershipLevel.toString()));
+        return new Member(MemberId.generate(), name, surname, new Email(email), new Phone(phone), new Address(address), membershipDate,  membershipLevel);
     }
 
     public static Member rehydrate(MemberId id, String name, String surname, Email email, Phone phone, Address address, LocalDate membershipDate, MembershipLevel membershipLevel) {
