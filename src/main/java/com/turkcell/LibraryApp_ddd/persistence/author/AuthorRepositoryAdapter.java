@@ -4,10 +4,12 @@ import com.turkcell.LibraryApp_ddd.domain.author.model.Author;
 import com.turkcell.LibraryApp_ddd.domain.author.model.AuthorId;
 import com.turkcell.LibraryApp_ddd.domain.author.repository.AuthorRepository;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Optional;
 
+@Repository
 public class AuthorRepositoryAdapter implements AuthorRepository {
 
     private final SpringDataAuthorRepository repository;
