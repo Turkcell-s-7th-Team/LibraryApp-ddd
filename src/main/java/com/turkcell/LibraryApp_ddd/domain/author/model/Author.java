@@ -26,7 +26,12 @@ public class Author {
         return new Author(id, authorFullName, authorEmail, authorPhoneNumber);
     }
 
-    //TODO -> Change email konus.
+    public void changeEmail(AuthorEmail newEmail)
+    {
+        AuthorEmail em = requireEmail(newEmail);
+        if (em.equals(this.authorEmail)) return;
+        this.authorEmail = em;
+    }
 
     public void rename(AuthorFullName newFullName) {
         this.authorFullName = requireFullName(newFullName);
