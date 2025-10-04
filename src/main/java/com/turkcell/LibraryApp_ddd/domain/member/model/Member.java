@@ -1,7 +1,6 @@
 package com.turkcell.LibraryApp_ddd.domain.member.model;
 
 import java.time.LocalDate;
-import java.util.Objects;
 
 public class Member {
 
@@ -69,5 +68,32 @@ public class Member {
         return membershipDate;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public void setEmail(Email email) {
+        this.email = email;
+    }
+
+    public void setPhone(Phone phone) {
+        this.phone = phone;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public void setMembershipDate(LocalDate membershipDate) {
+        this.membershipDate = membershipDate;
+    }
+
+    public void setMembershipLevel(MembershipLevel membershipLevel) {
+        this.membershipLevel = membershipLevel;
+    }
 }
 
