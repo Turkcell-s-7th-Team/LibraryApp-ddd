@@ -29,7 +29,6 @@ public class JpaBookEntity {
     @Column(name = "publisher_id", columnDefinition = "uuid")
     private UUID publisherId;
 
-    // builder-style erişim (senin diğer entity’lerle aynı)
     public UUID id() { return id; }
     public JpaBookEntity setId(UUID id) { this.id = id; return this; }
 
