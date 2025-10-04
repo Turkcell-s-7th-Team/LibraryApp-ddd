@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 
 import java.util.UUID;
@@ -31,7 +32,7 @@ public class JpaPublisherEntity {
         return address;
     }
 
-    public  String name() {
+    public String name() {
         return name;
     }
 
@@ -39,11 +40,13 @@ public class JpaPublisherEntity {
         this.id = id;
     }
 
-    public  @NotBlank void setName(String name) {
+
+    public void setName(String name) {
         this.name = name;
     }
 
-    public @NotBlank void setAddress(String address) {
+
+    public void setAddress(String address) {
         this.address = address;
     }
 }

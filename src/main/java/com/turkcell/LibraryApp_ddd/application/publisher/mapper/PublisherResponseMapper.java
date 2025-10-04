@@ -3,7 +3,9 @@ package com.turkcell.LibraryApp_ddd.application.publisher.mapper;
 import com.turkcell.LibraryApp_ddd.application.publisher.dto.PublisherResponse;
 import com.turkcell.LibraryApp_ddd.domain.member.model.Address;
 import com.turkcell.LibraryApp_ddd.domain.publisher.model.Publisher;
+import org.springframework.stereotype.Component;
 
+@Component
 public class PublisherResponseMapper {
     private String name;
     private Address address;

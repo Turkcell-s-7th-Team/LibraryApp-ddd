@@ -5,7 +5,9 @@ import com.turkcell.LibraryApp_ddd.application.publisher.mapper.CreatePublisherM
 import com.turkcell.LibraryApp_ddd.core.cqrs.CommandHandler;
 import com.turkcell.LibraryApp_ddd.domain.publisher.model.Publisher;
 import com.turkcell.LibraryApp_ddd.domain.publisher.repository.PublisherRepository;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CreatePublisherCommandHandler implements CommandHandler<CreatePublisherCommand,CreatedPublisherResponse> {
 
     private final PublisherRepository publisherRepository;
