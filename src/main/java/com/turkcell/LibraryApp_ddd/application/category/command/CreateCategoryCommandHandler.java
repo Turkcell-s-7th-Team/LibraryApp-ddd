@@ -7,18 +7,20 @@ import com.turkcell.LibraryApp_ddd.domain.category.model.CategoryDescription;
 import com.turkcell.LibraryApp_ddd.domain.category.model.CategoryId;
 import com.turkcell.LibraryApp_ddd.domain.category.model.CategoryName;
 import com.turkcell.LibraryApp_ddd.domain.category.repository.CategoryRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
 @Service
-@RequiredArgsConstructor
 public class CreateCategoryCommandHandler
         implements CommandHandler<CreateCategoryCommand, CreatedCategoryResponse> {
 
-    private final CategoryRepository categoryRepository; // domain port
+    private final CategoryRepository categoryRepository;
+
+    public CreateCategoryCommandHandler(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
+    }
 
     @Transactional
     @Override

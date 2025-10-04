@@ -4,16 +4,18 @@ import com.turkcell.LibraryApp_ddd.application.category.dto.CategoryResponse;
 import com.turkcell.LibraryApp_ddd.core.cqrs.QueryHandler;
 import com.turkcell.LibraryApp_ddd.domain.category.repository.CategoryRepository;
 import org.springframework.transaction.annotation.Transactional;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
 public class ListCategoriesQueryHandler
         implements QueryHandler<ListCategoriesQuery, List<CategoryResponse>> {
 
     private final CategoryRepository categoryRepository;
+
+    public ListCategoriesQueryHandler(CategoryRepository categoryRepository) {
+        this.categoryRepository = categoryRepository;
+    }
 
     @Override
     @Transactional(readOnly = true)

@@ -3,27 +3,31 @@ package com.turkcell.LibraryApp_ddd.persistence.category;
 import com.turkcell.LibraryApp_ddd.domain.category.model.Category;
 import com.turkcell.LibraryApp_ddd.domain.category.model.CategoryId;
 import com.turkcell.LibraryApp_ddd.domain.category.repository.CategoryRepository;
-import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.Optional;
 
 @Repository
-@RequiredArgsConstructor
 public class CategoryRepositoryAdapter implements CategoryRepository {
+
     private static final Logger log = LoggerFactory.getLogger(CategoryRepositoryAdapter.class);
 
     private final SpringDataCategoryRepository jpa;
     private final CategoryEntityMapper mapper;
 
+    public CategoryRepositoryAdapter(SpringDataCategoryRepository jpa, CategoryEntityMapper mapper) {
+        this.jpa = jpa;
+        this.mapper = mapper;
+    }
+
     @Override
     @Transactional
     public Category save(Category category) {
-
         JpaCategoryEntity entity = mapper.toEntity(category);
 
         log.debug("toEntity => id={}, name='{}', desc='{}'",
@@ -34,13 +38,12 @@ public class CategoryRepositoryAdapter implements CategoryRepository {
         log.debug("fromJPA => id={}, name='{}', desc='{}'",
                 saved.getId(), saved.getName(), saved.getDescription());
 
-        // Entity -> Domain
         return mapper.toDomain(saved);
     }
 
     @Override
     public Optional<Category> findById(CategoryId categoryId) {
-        return Optional.empty();
+        return jpa.findById(categoryId.value()).map(mapper::toDomain);
     }
 
     @Override
@@ -57,6 +60,6 @@ public class CategoryRepositoryAdapter implements CategoryRepository {
 
     @Override
     public void delete(CategoryId categoryId) {
-
+        jpa.deleteById(categoryId.value());
     }
 }
