@@ -13,4 +13,9 @@ public record Email(String value) {
             throw new IllegalArgumentException("Invalid email format: " + value);
         }
     }
+
+    @Override
+    public String toString() {
+        return value;
+    }
 }

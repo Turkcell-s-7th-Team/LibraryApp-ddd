@@ -1,4 +1,4 @@
-package com.turkcell.LibraryApp_ddd.domain.member.model;
+package com.turkcell.LibraryApp_ddd.domain.publisher.model;
 
 import java.util.Objects;
 
@@ -13,6 +13,7 @@ public record Address(String value) {
             throw new IllegalArgumentException("Address is too long");
         }
     }
+
     @Override
     public String toString() {
         return value;

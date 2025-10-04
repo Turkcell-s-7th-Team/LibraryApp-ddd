@@ -1,4 +1,4 @@
-package com.turkcell.LibraryApp_ddd.domain.member.model;
+package com.turkcell.LibraryApp_ddd.domain.staff.model;
 
 import java.util.Objects;
 
@@ -12,6 +12,7 @@ public record Phone(String value) {
             throw new IllegalArgumentException("Invalid phone number format: " + value);
         }
     }
+
     @Override
     public String toString() {
         return value;

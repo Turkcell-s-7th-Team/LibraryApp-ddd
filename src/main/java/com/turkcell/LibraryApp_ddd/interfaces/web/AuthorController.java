@@ -38,6 +38,4 @@ public class AuthorController {
     {
         return createAuthorCommandHandler.handle(command);
     }
-
-
 }
