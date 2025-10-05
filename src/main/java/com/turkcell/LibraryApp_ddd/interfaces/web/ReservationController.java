@@ -37,7 +37,9 @@ public class ReservationController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CreatedReservationResponse createReservation(@Valid CreateReservationCommand command) {
+    public CreatedReservationResponse createReservation(
+            @Valid @RequestBody CreateReservationCommand command) {
         return createReservationCommandHandler.handle(command);
     }
+
 }

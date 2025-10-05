@@ -9,6 +9,7 @@ import com.turkcell.LibraryApp_ddd.domain.reservation.model.Reservation;
 import com.turkcell.LibraryApp_ddd.domain.reservation.model.ReservationDate;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.UUID;
@@ -31,14 +32,15 @@ public class CreateReservationMapper {
     }
 
     public CreatedReservationResponse toResponse(Reservation reservation) {
-        Set<UUID> bookIds = reservation.bookIds().stream()
+        Set<UUID> bookIdSet = reservation.bookIds().stream()
                 .map(BookId::value)
                 .collect(Collectors.toSet());
+        List<UUID> bookIdList = new ArrayList<>(bookIdSet);
 
         return new CreatedReservationResponse(
                 reservation.id().value(),
                 reservation.memberId().value(),
-                (List<UUID>) bookIds,
+                bookIdList,
                 reservation.reservationDate().value(),
                 reservation.dueDate().value()
         );
