@@ -2,51 +2,40 @@ package com.turkcell.LibraryApp_ddd.domain.reservation.model;
 
 import com.turkcell.LibraryApp_ddd.domain.book.model.Book;
 import com.turkcell.LibraryApp_ddd.domain.book.model.BookId;
-import com.turkcell.LibraryApp_ddd.domain.fine.model.Fine;
 import com.turkcell.LibraryApp_ddd.domain.member.model.MemberId;
 
-import java.time.LocalDate;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 public class Reservation {
 
     private final ReservationId id;
     private final MemberId memberId;
-    private Set<Book> books;
-    private LocalDate reservationDate;
-    private LocalDate dueDate;
-    private Set<Fine> fines;
+    private Set<BookId> bookIds;
+    private ReservationDate reservationDate;
+    private DueDate dueDate;
 
-    private Reservation(ReservationId id, MemberId memberId, Set<Book> books, LocalDate reservationDate, LocalDate dueDate, Set<Fine> fines) {
+    private Reservation(ReservationId id, MemberId memberId, Set<BookId> bookIds,
+                        ReservationDate reservationDate, DueDate dueDate) {
         this.id = id;
         this.memberId = memberId;
-        this.books = books != null ? books : new HashSet<>();
+        this.bookIds = bookIds != null ? new HashSet<>(bookIds) : new HashSet<>();
         this.reservationDate = reservationDate;
         this.dueDate = dueDate;
-        this.fines = fines != null ? fines : new HashSet<>();
     }
 
-    public static Reservation create(MemberId memberId, Set<Book> books, LocalDate reservationDate, LocalDate dueDate) {
-        return new Reservation(
-                ReservationId.generate(),
-                memberId,
-                books,
-                reservationDate,
-                dueDate,
-                new HashSet<>()
-        );
+    public static Reservation create(MemberId memberId, Set<BookId> bookIds, ReservationDate reservationDate, DueDate dueDate) {
+        return new Reservation(ReservationId.generate(), memberId, bookIds, reservationDate, dueDate);
     }
 
-    public static Reservation rehydrate(ReservationId id, MemberId memberId, Set<Book> books, LocalDate reservationDate, LocalDate dueDate, Set<Fine> fines) {
-        return new Reservation(
-                id,
-                memberId,
-                books,
-                reservationDate,
-                dueDate,
-                fines
-        );
+    public static Reservation rehydrate(ReservationId id, MemberId memberId, Set<Book> books, ReservationDate reservationDate, DueDate dueDate) {
+        Set<BookId> bookIds = new HashSet<>();
+        if (books != null) {
+            books.forEach(book -> bookIds.add(book.id()));
+        }
+        return new Reservation(id, memberId, bookIds, reservationDate, dueDate);
     }
 
     public ReservationId id() {
@@ -57,35 +46,31 @@ public class Reservation {
         return memberId;
     }
 
-    public Set<Book> books() {
-        return books;
-    }
-
     public Set<BookId> bookIds() {
-        Set<BookId> ids = new HashSet<>();
-        for (Book book : books) {
-            ids.add(book.id());
-        }
-        return ids;
+        return Collections.unmodifiableSet(bookIds);
     }
 
-    public LocalDate reservationDate() {
+    public ReservationDate reservationDate() {
         return reservationDate;
     }
 
-    public LocalDate dueDate() {
+    public DueDate dueDate() {
         return dueDate;
     }
 
-    public Set<Fine> fines() {
-        return fines;
+    public void addBook(BookId bookId) {
+        this.bookIds.add(bookId);
     }
 
-    public void addBook(Book book) {
-        this.books.add(book);
+    public void removeBook(BookId bookId) {
+        this.bookIds.remove(bookId);
     }
 
-    public void addFine(Fine fine) {
-        this.fines.add(fine);
+    public void setReservationDate(ReservationDate reservationDate) {
+        this.reservationDate = reservationDate;
+    }
+
+    public void setDueDate(DueDate dueDate) {
+        this.dueDate = dueDate;
     }
 }

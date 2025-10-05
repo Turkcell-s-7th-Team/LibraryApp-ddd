@@ -13,6 +13,10 @@ public record DueDate(LocalDate value) implements Serializable {
         }
     }
 
+    public static DueDate fromDaysLater(int days) {
+        return new DueDate(LocalDate.now().plusDays(days));
+    }
+
     @Override
     public String toString() {
         return value.toString();

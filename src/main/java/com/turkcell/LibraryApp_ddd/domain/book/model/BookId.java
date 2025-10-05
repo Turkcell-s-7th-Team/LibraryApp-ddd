@@ -10,4 +10,6 @@ public record BookId(UUID value) implements Serializable {
     }
     public static BookId generateBookId() { return new BookId(UUID.randomUUID());
     }
+
+
 }

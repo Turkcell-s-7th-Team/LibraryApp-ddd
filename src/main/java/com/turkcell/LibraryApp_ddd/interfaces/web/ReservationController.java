@@ -28,7 +28,10 @@ public class ReservationController {
     }
 
     @GetMapping
-    public List<ReservationResponse> getReservations(@Valid ListReservationsQuery query) {
+    public List<ReservationResponse> getReservations(
+            @RequestParam(defaultValue = "0") Integer pageIndex,
+            @RequestParam(defaultValue = "10") Integer pageSize) {
+        ListReservationsQuery query = new ListReservationsQuery(pageIndex, pageSize);
         return listReservationsQueryHandler.handle(query);
     }
 

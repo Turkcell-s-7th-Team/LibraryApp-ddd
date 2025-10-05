@@ -1,10 +1,6 @@
-
 package com.turkcell.LibraryApp_ddd.persistence.reservation;
 
-import com.turkcell.LibraryApp_ddd.domain.book.model.BookId;
-import com.turkcell.LibraryApp_ddd.domain.member.model.MemberId;
-import com.turkcell.LibraryApp_ddd.domain.fine.model.Fine;
-
+import com.turkcell.LibraryApp_ddd.persistence.book.JpaBookEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
@@ -19,7 +15,7 @@ public class JpaReservationEntity {
 
     @Id
     @Column(columnDefinition = "uuid")
-    private UUID id;
+    UUID id;
 
     @NotNull
     @Column(name = "member_id", columnDefinition = "uuid", nullable = false)
@@ -31,7 +27,7 @@ public class JpaReservationEntity {
             joinColumns = @JoinColumn(name = "reservation_id"),
             inverseJoinColumns = @JoinColumn(name = "book_id")
     )
-    private Set<BookId> books = new HashSet<>();
+    private Set<JpaBookEntity> books = new HashSet<>();
 
     @Column(name = "reservation_date", nullable = false)
     private LocalDate reservationDate;
@@ -39,11 +35,8 @@ public class JpaReservationEntity {
     @Column(name = "due_date", nullable = false)
     private LocalDate dueDate;
 
-    @OneToMany
-    @JoinColumn(name = "reservation_id")
-    private Set<Fine> fines = new HashSet<>();
 
-    public UUID id() {
+    public UUID getId() {
         return id;
     }
 
@@ -51,7 +44,7 @@ public class JpaReservationEntity {
         this.id = id;
     }
 
-    public UUID memberId() {
+    public UUID getMemberId() {
         return memberId;
     }
 
@@ -59,15 +52,15 @@ public class JpaReservationEntity {
         this.memberId = memberId;
     }
 
-    public Set<BookId> books() {
+    public Set<JpaBookEntity> getBooks() {
         return books;
     }
 
-    public void setBooks(Set<BookId> books) {
+    public void setBooks(Set<JpaBookEntity> books) {
         this.books = books;
     }
 
-    public LocalDate reservationDate() {
+    public LocalDate getReservationDate() {
         return reservationDate;
     }
 
@@ -75,19 +68,11 @@ public class JpaReservationEntity {
         this.reservationDate = reservationDate;
     }
 
-    public LocalDate dueDate() {
+    public LocalDate getDueDate() {
         return dueDate;
     }
 
     public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
-    }
-
-    public Set<Fine> fines() {
-        return fines;
-    }
-
-    public void setFines(Set<Fine> fines) {
-        this.fines = fines;
     }
 }

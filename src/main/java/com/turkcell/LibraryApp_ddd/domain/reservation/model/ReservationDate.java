@@ -13,6 +13,10 @@ public record ReservationDate(LocalDate value) implements Serializable {
         }
     }
 
+    public static ReservationDate now() {
+        return new ReservationDate(LocalDate.now());
+    }
+
     @Override
     public String toString() {
         return value.toString();

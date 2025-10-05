@@ -11,9 +11,9 @@ public class ReservationResponseMapper {
         return new ReservationResponse(
                 reservation.id().value(),
                 reservation.memberId().value(),
-                reservation.bookId().value(),
-                reservation.reservationDate(),
-                reservation.dueDate()
+                reservation.bookIds().stream().map(id -> id.value()).toList(),
+                reservation.reservationDate().value(),
+                reservation.dueDate().value()
         );
     }
 }
